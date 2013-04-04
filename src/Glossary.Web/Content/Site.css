@@ -1,0 +1,102 @@
+﻿.mainContent
+{
+    position: fixed;
+    left: 25%;
+    margin-left: -100px;
+}
+.nano
+{
+    background: white;
+    width: 700px;
+    height: 500px;
+}
+.nano .content:focus
+{
+    outline-style: none !important;
+}
+.nano .content
+{
+    padding: 10px;
+    overflow: hidden !important;
+}
+.nano .pane
+{
+    background: #888;
+}
+.nano .slider
+{
+    background: #039 !important;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+{
+    font-family: "Lucida Sans Unicode" , "Lucida Grande" , Sans-Serif;
+    font-size: 12px !important;
+}
+
+.ui-dialog-titlebar-close
+{
+    visibility: hidden;
+}
+
+.glossaryForm, .ui-dialog-content
+{
+    width: 450px !important;
+}
+
+.glossaryTitle h1
+{
+    font-family: "Lucida Sans Unicode" , "Lucida Grande" , Sans-Serif;
+    font-size: 18px;
+    color: #039;
+}
+.right
+{
+    position: relative;
+    left: 70%;
+}
+.glossaryForm input, button, label, textarea, p
+{
+    font-family: "Lucida Sans Unicode" , "Lucida Grande" , Sans-Serif;
+    font-size: 12px;
+    color: #039;
+}
+.glossaryForm
+{
+    border-style: inset;
+    border-color: #039;
+}
+.glossaryList
+{
+    font-family: "Lucida Sans Unicode" , "Lucida Grande" , Sans-Serif;
+    font-size: 12px;
+    text-align: left;
+    border-collapse: collapse;
+    margin: 20px;
+    padding-left: 200px;
+    overflow: hidden;
+}
+.glossaryList th
+{
+    font-size: 14px;
+    font-weight: normal;
+    color: #039;
+    padding: 12px 15px;
+}
+.glossaryList td
+{
+    color: #669;
+    border-top: 1px solid #e8edff;
+    padding: 10px 15px;
+}
+.oce-first
+{
+    background: #d0dafd;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+.glossaryList tr:hover td
+{
+    color: #339;
+    background: #eff2ff;
+}

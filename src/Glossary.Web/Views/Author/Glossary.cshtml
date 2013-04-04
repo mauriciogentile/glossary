@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Glossary";
+}
+<div class="mainContent">
+    <div class="glossaryTitle">
+        <h1>
+            <span>Glossary</span>
+        </h1>
+    </div>
+    <div class="errorDialog" title="Error">
+        <p data-bind="text: currentError().statusText">
+        </p>
+        <textarea type="text" id="spec" name="spec" rows="10" cols="60" data-bind="value: currentError().responseText"></textarea>
+        <br />
+        <button id="create-user" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+            role="button" aria-disabled="false" data-bind="click: cancel">
+            <span class="ui-button-text">OK</span>
+        </button>
+    </div>
+    <div class="glossaryForm" title="Add new term">
+        <input type="text" id="term" name="term" placeholder="Enter new term here" data-bind="value: addFormTerm" />
+        <br />
+        <textarea type="text" id="spec" placeholder="Enter definition here" name="spec" rows="10"
+            cols="60" data-bind="value: addFormDefinition"></textarea>
+        <br />
+        <button id="create-user" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+            role="button" aria-disabled="false" data-bind="click: confirm">
+            <span class="ui-button-text">OK</span>
+        </button>
+        <button id="create-user" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+            role="button" aria-disabled="false" data-bind="click: cancel">
+            <span class="ui-button-text">Cancel</span>
+        </button>
+    </div>
+    <div class="nano">
+        <div class="glossaryList content" title="Glossary">
+            <table>
+                <colgroup>
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th data-bind="click: $root.changeOrder" scope="col">
+                            <a href="#">Term</a>
+                        </th>
+                        <th scope="col">
+                            Definition
+                        </th>
+                        <th scope="col">
+                        </th>
+                        <th scope="col">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: terms">
+                    <tr>
+                        <td data-bind="text: Name">
+                        </td>
+                        <td data-bind="text: Definition">
+                        </td>
+                        <td>
+                            <a href="#" data-bind="click: $parent.deleteTerm">X</a>
+                        </td>
+                        <td>
+                            <a href="#" data-bind="click: function(term) { $('.glossaryForm').dialog('open'); $parent.editTerm(term); }">
+                                Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button id="create-user" class="right ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+        role="button" aria-disabled="false" data-bind="click: addNew">
+        <span class="ui-button-text">New Term...</span>
+    </button>
+</div>

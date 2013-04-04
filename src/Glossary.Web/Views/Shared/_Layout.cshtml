@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/css")" rel="stylesheet" type="text/css" />
+    <link href="~/Content/smoothness/jquery-ui-1.8.22.custom.css")" rel="stylesheet" type="text/css" />
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Scripts/js")"></script>
+    <script type="text/javascript" src="~/Scripts/Glossary/util.js"></script>
+    <script type="text/javascript" src="~/Scripts/Glossary/index.js"></script>
+</head>
+<body link="#039" alink="#039" vlink="#039">
+    @RenderBody()
+</body>
+</html>

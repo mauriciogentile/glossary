@@ -5,9 +5,9 @@ using System.Text;
 using Company.Glossary.Entities;
 using System.Security.Principal;
 
-namespace Glossary.Data.Mock
+namespace Company.Glossary.Data.Mock
 {
-    public static class Mock
+    public static class MockTerms
     {
         public static List<Term> GenerateTerms()
         {

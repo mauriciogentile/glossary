@@ -3,23 +3,25 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Company.Glossary.Web.Controllers;
-using Xunit;
 using Company.Glossary.Entities.Repositories;
 using Moq;
 using Company.Glossary.Entities;
 using System.Net;
 using Company.Glossary.Web.Infrastructure;
+using NUnit.Framework;
+using Company.Glossary.Data.Mock;
 
-namespace Glossary.Web.Tests
+namespace Company.Glossary.Web.Tests
 {
     public class TermControllerTest
     {
-        readonly Mock<ICatalog> catalog;
-        readonly List<Term> terms;
+        private Mock<ICatalog> catalog;
+        private List<Term> terms;
 
-        public TermControllerTest()
+        [SetUp]
+        public void SetUp()
         {
-            terms = Glossary.Data.Mock.Mock.GenerateTerms();
+            terms = MockTerms.GenerateTerms();
             catalog = new Mock<ICatalog>();
             catalog.Setup<IEnumerable<Term>>(x => x.TermRepository.AllActive()).Returns(() => { return terms.AsQueryable(); });
             catalog.Setup<Term>(x => x.TermRepository.GetById(It.IsAny<int>())).Returns((int id) => { return terms.Where(t => t.Id == id).SingleOrDefault(); });
@@ -27,7 +29,7 @@ namespace Glossary.Web.Tests
             catalog.Setup(x => x.TermRepository.Create(It.IsAny<Term>())).Callback((Term term) => terms.Add(term)).Returns((Term term) => { return term; });
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Return_Ordered_List()
         {
             var first = terms.OrderBy(x => x.Name).First();
@@ -38,13 +40,13 @@ namespace Glossary.Web.Tests
             var descending = target.Get(false);
             var ascending = target.Get(true);
 
-            Assert.Same(descending.First(), last);
-            Assert.Same(descending.Last(), first);
-            Assert.Same(ascending.First(), first);
-            Assert.Same(ascending.Last(), last);
+            Assert.AreSame(descending.First(), last);
+            Assert.AreSame(descending.Last(), first);
+            Assert.AreSame(ascending.First(), first);
+            Assert.AreSame(ascending.Last(), last);
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Return_Term_ById()
         {
             var expected = terms.Last();
@@ -54,10 +56,10 @@ namespace Glossary.Web.Tests
 
             var result = target.Get(Int32.MaxValue);
 
-            Assert.Same(result, expected);
+            Assert.AreSame(result, expected);
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Return_Term_ById_With_NotFound()
         {
             var target = new TermController(catalog.Object);
@@ -65,7 +67,7 @@ namespace Glossary.Web.Tests
             Assert.Throws<NotFoundException>(() => target.Get(Int32.MaxValue));
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Delete_Term_ById()
         {
             var expected = terms.Last();
@@ -78,7 +80,7 @@ namespace Glossary.Web.Tests
             Assert.False(terms.Contains(expected));
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Create_Term()
         {
             var newTerm = new Term()
@@ -94,7 +96,7 @@ namespace Glossary.Web.Tests
             Assert.True(terms.Contains(newTerm));
         }
 
-        [Fact]
+        [Test]
         public void TermController_Get_Should_Update_Term()
         {
             var term = terms.First();
@@ -107,7 +109,7 @@ namespace Glossary.Web.Tests
 
             var result = target.Get(int.MaxValue);
 
-            Assert.Equal(result.Definition, "new def");
+            Assert.AreEqual(result.Definition, "new def");
         }
     }
 }

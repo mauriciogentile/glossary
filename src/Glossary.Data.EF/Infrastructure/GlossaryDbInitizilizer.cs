@@ -5,7 +5,7 @@ using System.Text;
 using Company.Glossary.Entities;
 using System.Data.Entity;
 using System.Security.Principal;
-using Glossary.Data.Mock;
+using Company.Glossary.Data.Mock;
 
 namespace Company.Glossary.Data.EF.Infrastructure
 {
@@ -16,7 +16,7 @@ namespace Company.Glossary.Data.EF.Infrastructure
         {
             base.Seed(context);
 
-            var terms = Mock.GenerateTerms();
+            var terms = MockTerms.GenerateTerms();
 
             terms.ForEach(x => context.Terms.Add(x));
 

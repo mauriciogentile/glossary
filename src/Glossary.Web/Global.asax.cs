@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -11,10 +8,9 @@ using Company.Glossary.Web.Infrastructure;
 using Microsoft.Practices.Unity;
 using Company.Glossary.Data.EF.Infrastructure;
 using System.Data.Entity;
-using Company.Glossary.Web.Controllers;
 using System.Data.Entity.Validation;
 
-namespace Glossary.Web
+namespace Company.Glossary.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -59,7 +55,9 @@ namespace Glossary.Web
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            BundleTable.Bundles.EnableDefaultBundles();
+            //BundleTable.Bundles.EnableDefaultBundles();
+
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer(new GlossaryDbInitizilizer());
         }
@@ -70,7 +68,7 @@ namespace Glossary.Web
             container.RegisterType<ICatalog, Catalog>();
 
             var resolver = new UnityDependencyResolver(container);
-            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(resolver);
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
 
             DependencyResolver.SetResolver(resolver);
         }

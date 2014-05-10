@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Web.Http.Filters;
-using System.Web.Http.Common;
+using System.Web.Http.Controllers;
 using System.Net.Http;
+using System.Web.Http;
 
 namespace Company.Glossary.Web.Infrastructure
 {
@@ -36,20 +37,18 @@ namespace Company.Glossary.Web.Infrastructure
                 {
                     var httpException = (HttpException)exception;
 
-                    actionExecutedContext.Result =
-                        new HttpResponseMessage<Exception>(Error.AsError(new Exception(exception.Message)), (HttpStatusCode)httpException.GetHttpCode());
+                    actionExecutedContext.Response =
+                        new HttpResponseMessage((HttpStatusCode)httpException.GetHttpCode());
 
                 }
                 else if (this.Mappings.ContainsKey(exception.GetType()))
                 {
                     var httpStatusCode = this.Mappings[exception.GetType()];
-                    actionExecutedContext.Result = new HttpResponseMessage<Exception>(
-                        Error.AsError(new Exception(exception.Message)), httpStatusCode);
+                    actionExecutedContext.Response = new HttpResponseMessage(httpStatusCode);
                 }
                 else
                 {
-                    actionExecutedContext.Result = new HttpResponseMessage<Exception>(
-                        Error.AsError(new Exception(exception.Message)), HttpStatusCode.InternalServerError);
+                    actionExecutedContext.Response = new HttpResponseException(HttpStatusCode.InternalServerError).Response;
                 }
             }
         }

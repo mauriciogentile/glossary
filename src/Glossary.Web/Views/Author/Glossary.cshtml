@@ -10,7 +10,7 @@
     <div class="errorDialog" title="Error">
         <p data-bind="text: currentError().statusText">
         </p>
-        <textarea type="text" id="spec" name="spec" rows="10" cols="60" data-bind="value: currentError().responseText"></textarea>
+        <textarea id="spec" name="spec" rows="10" cols="60" data-bind="value: currentError().responseText"></textarea>
         <br />
         <button id="create-user" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
             role="button" aria-disabled="false" data-bind="click: cancel">
@@ -20,7 +20,7 @@
     <div class="glossaryForm" title="Add new term">
         <input type="text" id="term" name="term" placeholder="Enter new term here" data-bind="value: addFormTerm" />
         <br />
-        <textarea type="text" id="spec" placeholder="Enter definition here" name="spec" rows="10"
+        <textarea id="spec" placeholder="Enter definition here" name="spec" rows="10"
             cols="60" data-bind="value: addFormDefinition"></textarea>
         <br />
         <button id="create-user" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"

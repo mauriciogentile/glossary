@@ -1,0 +1,16 @@
+/src/packages
+/src/Glossary.Data/bin
+/src/Glossary.Data/obj
+/src/*.suo
+/src/TestResults
+/src/Glossary.Data.EF/bin
+/src/Glossary.Data.EF/obj
+/src/Glossary.Data.Mock/bin
+/src/Glossary.Data.Mock/obj
+/src/Glossary.Entities/obj
+/src/Glossary.Entities/bin
+/src/Glossary.Web/bin
+/src/Glossary.Web/obj
+/src/Glossary.Web/*.user
+/src/Tests/Glossary.Web.Tests/bin
+/src/Tests/Glossary.Web.Tests/obj

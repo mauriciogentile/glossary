@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.Services;
 using Microsoft.Practices.Unity;
+using System.Web.Http.Dependencies;
 
 namespace Company.Glossary.Web.Infrastructure
 {
-    public class UnityDependencyResolver : IDependencyResolver, System.Web.Mvc.IDependencyResolver
+    public class UnityDependencyResolver : IDependencyScope, IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
         readonly IUnityContainer container;
 
@@ -32,6 +33,16 @@ namespace Company.Glossary.Web.Infrastructure
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return container.ResolveAll(serviceType);
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return this;
+        }
+
+        public void Dispose()
+        {
+            container.Dispose();
         }
     }
 }

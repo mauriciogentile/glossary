@@ -23,7 +23,7 @@ namespace Company.Glossary.Web.Controllers
             IIdentity user;
             if (ControllerContext != null)
             {
-                IPrincipal principal = ControllerContext.Request.GetUserPrincipal();
+                IPrincipal principal = User;
                 if (principal != null)
                 {
                     user = principal.Identity;
